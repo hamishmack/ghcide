@@ -389,7 +389,7 @@ memoIO op = do
             Just res -> return (mp, res)
 
 setOptions :: GhcMonad m => ComponentOptions -> DynFlags -> m (DynFlags, [Target])
-setOptions (ComponentOptions theOpts _) dflags = do
+setOptions (ComponentOptions { componentOptions = theOpts }) dflags = do
     cacheDir <- liftIO $ getCacheDir theOpts
     (dflags', targets) <- addCmdOpts theOpts dflags
     let dflags'' =
